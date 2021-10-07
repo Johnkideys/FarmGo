@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+        {% if current_user.role == 'user' %}
+              <!-- My Orders Dropdown Page HERE -->
+
+    <div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">My Orders</a>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-body">
+            {% if purchaseinfo %}
+
+                {% for purchased in purchaseinfo %}
+                    {% for post in posts %}
+                        {% for product in products %}
+
+                               {% if purchased.post_id == post.id and purchased.good_id == product.id %}
+                                    <li class="list-group-item">
+                                        <h5>You have an order: From->{{ post.title }}, Item->{{ product.name }}, Delivery method->{{ purchased.delivery }} </h5>
+                                        <a href="{{ url_for('comments', post_id=post.id) }}" class="btn btn-primary">Leave a Comment</a>
+                                    </li>
+                               {% endif%}
+
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+
+            {% else %}
+                <p>you don't have orders</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+        {% endif %}
+
+    {% if current_user.role == 'producer' %}
+              <!-- My Orders Dropdown Page HERE -->
+
+   <div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Customer Orders</a>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-body">
+            {% if purchaseinfo_producer %}
+
+                {% for purchased in purchaseinfo_producer %}
+                    {% for post in posts %}
+                        {% for product in products %}
+                            {% for user in users %}
+
+                               {% if purchased.post_id == post.id and purchased.good_id == product.id and user.id == purchased.user_id and current_user.id == post.user_id %}
+                                    <li class="list-group-item">
+                                        <h5>There is an order for you!<br> From: {{ user.email }}<br> Item: {{ product.name }}<br> Delivery method: {{ purchased.delivery }} <br></h5>
+                                    </li>
+                               {% endif%}
+                            {% endfor %}
+
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+
+            {% else %}
+                <p>you don't have orders</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+        {% endif %}
+
+
+
+
+
+
+
+          <!-- Profile pic HERE -->
+
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src={{ image_file }}>
+        <div class="media-body">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+
+        <form method="post" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
