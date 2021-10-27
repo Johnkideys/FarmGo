@@ -2,12 +2,15 @@ import os
 import secrets
 from PIL import Image
 from flask import render_template, url_for, redirect, flash, request, abort, session
-from FlaskBlog import app, db, bcrypt, mail
+from FlaskBlog import db, bcrypt, mail
 from FlaskBlog.forms import (RegistrationForm, LoginForm, RetailerForm, UpdateAccountForm,
                              UpdateProductsForm, PurchaseForm, CommentForm, RequestResetForm, ResetPasswordForm)
 from FlaskBlog.models import User, Post, ProductItem, PurchaseInfo, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message, Mail
+from flask import current_app as app # line added because of the create_app function in __init__.py
+
+
 
 from functools import wraps
 def producer_required(func):
