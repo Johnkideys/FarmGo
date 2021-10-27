@@ -1,1 +1,1 @@
-class Config:
+class Config:  
