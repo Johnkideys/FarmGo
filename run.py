@@ -8,4 +8,3 @@ app = create_app() #no need to pass argument as the default argument is already 
 
 if __name__ == '__main__':
     app.run()
-    
