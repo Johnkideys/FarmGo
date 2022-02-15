@@ -4,7 +4,8 @@
 Farmgo was part of a MSc group project for the Information Systems module. The aim was to learn how to create a website from scratch using Flask.
 FarmGo is an e-commerce website that connects local producers directly with consumers for the Piedmont region in Italy.
 
-![alt text](about.png)
+![alt text](FarmGo_Pictures/1_about.png)
+
 
 ## Technical Stuff about the Website
 The design is a Model-View-Controller software pattern. 
