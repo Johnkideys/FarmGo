@@ -16,9 +16,9 @@ This decision has been made because Flask allows an easy implementation of datab
 includes useful extensions such as WTF forms, Bcrypt and Login. 
 It also allows to create a built-in front-end with Jinja2 functionalities (HTML,CSS,JS).
 
-The backend of the web application can be divided into three main categories:
-• The Database – SQLAlchemy
-• The Forms – WTForms Extension
+The backend of the web application can be divided into three main categories:  
+• The Database – SQLAlchemy. 
+• The Forms – WTForms Extension. 
 • The Routes – Jinja2
 
 As previously mentioned, the database was implemented with SQLAlchemy library in Flask which allows to define a table in the database, 
