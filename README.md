@@ -1,8 +1,12 @@
 # FarmGo
 
+## What is FarmGo ?
+Farmgo was part of a MSc group project for the Information Systems module. The aim was to learn how to create a website from scratch using Flask.
 FarmGo is an e-commerce website that connects local producers directly with consumers for the Piedmont region in Italy.
-It was a MSc group project where the aim was to learn how to create a website using Flask.
 
+![alt text](about.png)
+
+## Technical Stuff about the Website
 The design is a Model-View-Controller software pattern. 
 The controller interacts with our flask package, the View is facilitated by the Jinja2 template and the Bootstrap framework,
 and the model is created with SQLAlchemy.
@@ -12,11 +16,12 @@ This decision has been made because Flask allows an easy implementation of datab
 includes useful extensions such as WTF forms, Bcrypt and Login. 
 It also allows to create a built-in front-end with Jinja2 functionalities (HTML,CSS,JS).
 
-The backend of the web application can be divided into three main categories:
-• The Database – SQLAlchemy
-• The Forms – WTForms Extension
+The backend of the web application can be divided into three main categories:      
+• The Database – SQLAlchemy.    
+• The Forms – WTForms Extension.      
 • The Routes – Jinja2
 
 As previously mentioned, the database was implemented with SQLAlchemy library in Flask which allows to define a table in the database, 
 using the familiar object oriented approach, by defining classes.
+
 The Flask-WTF extension was used to create the forms in our application. It is a simple integration with the WTForms library for python.
